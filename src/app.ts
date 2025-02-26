@@ -9,12 +9,9 @@ createMongoConnection();
 
 dotenv.config();
 
-const allowedOrigins = ["http://localhost:5173","http://localhost:5174",
-  "http://44.212.1.19"];
+const allowedOrigins = ["http://localhost:5173","http://localhost:5174","http://44.212.1.19"];
 
-  const options: cors.CorsOptions = {
-  origin: allowedOrigins,
-};
+const options: cors.CorsOptions = {origin: allowedOrigins};
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./../swagger-output.json');
