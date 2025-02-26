@@ -1,29 +1,30 @@
-import { Pool } from "pg";
+import { MongoClient, Collection, Db } from "mongodb";
 import dotenv from "dotenv";
+
 dotenv.config();
 
-const dbHost = process.env.POSTGRES_HOST;
-const dbUser = process.env.POSTGRES_USER;
-const dbPassword = process.env.POSTGRES_PASSWORD;
-const dbName = process.env.POSTGRES_DB;
+const url = process.env.MONGO_URL || "";
+const dbName = process.env.MONGO_DB_NAME || "myDatabase";
+const collections: { [key: string]: Collection } = {};
 
-const pool = new Pool({
-  max: 1000,
-  connectionString: `postgres://${dbUser}:${dbPassword}@${dbHost}:5432/${dbName}`,
-  idleTimeoutMillis: 30000,
-});
-
-const executeQuery = async (sql: any, data?: any[]) => {
-  const client = await pool.connect();
+async function createMongoConnection() {
   try {
-    const { rows } = await client.query(sql, data);
-    client.release();
-    return rows;
-  } catch (err) {
-    console.error(err);
-    client.release();
-    return [];
+    const client = await MongoClient.connect(url);
+    const db = client.db(dbName);
+    addCollections(db);
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error);
   }
+}
+
+const addCollections = (db: Db) => {
+  collections.usuarios = db.collection("usuarios");
+  collections.cafes = db.collection("cafes");
+  collections.notas = db.collection("notas");
+  collections.pedidos = db.collection("pedidos");
+  collections.usuarios.createIndex({ correo: 1 }, { unique: true });
 };
 
-export default executeQuery;
+export default createMongoConnection;
+
+export { collections };
