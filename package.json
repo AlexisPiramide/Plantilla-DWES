@@ -7,7 +7,7 @@
         "dev": "nodemon ./src/index.ts",
         "build": "tsc",
         "start": "node dist/src/index.js",
-        "swagger": "node ./src/swagger.js",
+        "swagger": "node ./swagger.js",
         "test": "NODE_ENV=test jest --coverage --runInBand --coverageReporters=html"
     },
     "author": "",

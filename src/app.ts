@@ -17,7 +17,7 @@ const allowedOrigins = ["http://localhost:5173","http://localhost:5174",
 };
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('../swagger.json');
+const swaggerDocument = require('./../swagger-output.json');
 
 const app = express();
 app.use(express.json());
