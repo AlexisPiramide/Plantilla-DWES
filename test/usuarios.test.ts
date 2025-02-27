@@ -1,17 +1,15 @@
 import request from "supertest";
 import app from "./../src/app";
-import createMongoConnection from "../context/mongo.db";
-import { collections } from "../context/mongo.db";
+import  executeQuery  from "../context/postgres.connector";
 
 describe("API Usuarios Tests", () => {
     
     beforeAll(async () => {
-        await createMongoConnection();
-        await collections.usuarios.deleteMany({});
+       await executeQuery("DELETE FROM usuario")
     });
 
     beforeEach(async () => {
-        await collections.usuarios.deleteMany({});
+        await executeQuery("DELETE FROM usuario")
     });
 
 
@@ -19,39 +17,69 @@ describe("API Usuarios Tests", () => {
         const response = await request(app)
             .post("/api/usuarios/registro")
             .send({
-                "alias": "test",
-                "correo": "test",
+                "email": "test@gmail.com",
                 "password": "test"
             });
-        expect(response.status).toBe(200);
+        expect(response.status).toBe(201);
         expect(response.body.token).toBeDefined();
-        expect(response.body.usuario.alias).toBe("test");
-        expect(response.body.usuario.correo).toBe("test");
+        expect(response.body.user.email).toBe("test@gmail.com");
     });
    
-    it("POST /api/usuarios/login", async () => {
-        doRegistro("test", "test");
+    it("POST /api/usuarios/entrar", async () => {
+        doRegistro("test@gmail.com", "test");
         const response = await request(app)
-            .post("/api/usuarios/login")
+            .post("/api/usuarios/entrar")
             .send({
-                "correo": "test",
+                "email": "test@gmail.com",
+                "password": "test"
+            });
+        expect(response.status).toBe(200);
+        expect(response.body.result.user.email).toBe("test@gmail.com");
+    });
+
+    it("POST /api/usuarios/entrar", async () => {
+        doRegistro("1234@gmail.com", "test");
+        const response = await request(app)
+            .post("/api/usuarios/entrar")
+            .send({
+                "email": "1234@gmail.com",
                 "password": "test"
             });
 
         expect(response.status).toBe(200);
-        expect(response.body.token).toBeDefined();
-        expect(response.body.usuario.alias).toBe("test");
-        expect(response.body.usuario.correo).toBe("test");
+        expect(response.body.result.user.email).toBe("1234@gmail.com");
     });
 
-    const doRegistro = async (correo: string, password: string) => {
-        await request(app)
+    it("GET /api/usuarios/saldo", async () => {
+        const token = await doRegistro("1234@gmail.com", "test");
+        const response = await request(app)
+            .get("/api/usuarios/saldo")
+            .set('Authorization', `Bearer ${token}`);
+
+        expect(response.status).toBe(200);
+        expect(Number(response.body.saldo)).toBe(0.00);
+        
+    });
+
+    it("GET /api/usuarios/saldo", async () => {
+        const token = await doRegistro("test@gmail.com", "test");
+        const response = await request(app)
+            .get("/api/usuarios/saldo")
+            .set('Authorization', `Bearer ${token}`);
+
+        expect(response.status).toBe(401);
+        
+    });
+
+    const doRegistro = async (email: string, password: string) => {
+        const response = await request(app)
             .post("/api/usuarios/registro")
             .send({
-                "correo": correo,
-                "password": password
+                email,
+                password,
             });
-    };
-
+            
+        return response.body.token;
+    }
 
 });

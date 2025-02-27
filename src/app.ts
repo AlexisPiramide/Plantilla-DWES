@@ -2,8 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import createMongoConnection from "../context/mongo.db";
-//import usuarioRouter from "./usuarios/infraestructure/rest/usuarios.rest"
-
+import usuarioRouter from "./usuarios/infraestructure/rest/usuarios.rest"
+import transaccionesRouter from "./transacciones/infraestructure/rest/transacciones.rest"
 
 createMongoConnection();
 
@@ -20,7 +20,8 @@ const app = express();
 app.use(express.json());
 app.use(cors(options));
 
-//app.use(`/api/usuarios`, usuarioRouter);
+app.use(`/api/usuarios`, usuarioRouter);
+app.use(`/api/transacciones`, transaccionesRouter);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for context/mongo.db.ts</title>
+    <title>Code coverage report for src/transacciones/application/transacciones.usecases.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">context</a> mongo.db.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/transacciones/application</a> transacciones.usecases.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.73% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/19</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.73% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/19</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
@@ -92,65 +92,68 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">import { MongoClient, Collection, Db } from "mongodb";
-import dotenv from "dotenv";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import UsuariosUsecases from "../../usuarios/application/usuarios.usecases";
+import Transaccion from "../domain/Transaccion";
+import transaccionesRepository from "../domain/transacciones.repository";
 &nbsp;
-dotenv.config();
+export default class transacionesUsecases{
+    constructor(private transaccionRepository: transaccionesRepository, private usuarioUsecases: UsuariosUsecases) {}
 &nbsp;
-const url = process.env.MONGO_URL || <span class="branch-1 cbranch-no" title="branch not covered" >"";</span>
-const dbName = process.env.MONGO_DB_NAME || <span class="branch-1 cbranch-no" title="branch not covered" >"myDatabase";</span>
-const collections: { [key: string]: Collection } = {};
 &nbsp;
-async function createMongoConnection() {
-  try {
-    const client = await MongoClient.connect(url);
-    const db = client.db(dbName);
-    addCollections(db);
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    console.error("Error connecting to MongoDB:", error);</span>
-  }
-}
+    async getTransacionesUsuario(correo: string):Promise&lt;Transaccion[]&gt;{
+        return this.transaccionRepository.getTransacionesUsuario(correo);
+    }
 &nbsp;
-const addCollections = (db: Db) =&gt; {
-  collections.usuarios = db.collection("usuarios");
-  collections.cafes = db.collection("cafes");
-  collections.notas = db.collection("notas");
-  collections.pedidos = db.collection("pedidos");
-  collections.usuarios.createIndex({ correo: 1 }, { unique: true });
-};
+    async getTodasTransacciones(): Promise&lt;Transaccion[]&gt; {
+        return this.transaccionRepository.getTodasTransacciones();
+    }
 &nbsp;
-export default createMongoConnection;
+    async recargar(usuario:string,conserje:string,importe:number):Promise &lt;Transaccion&gt;{
+        return this.transaccionRepository.recargar(usuario,conserje,importe);
+    }
+    async transaccion(usuario:string,conserje:string,concepto:string,importe:number):Promise &lt;Transaccion&gt;{
+        
+        const saldo = await this.usuarioUsecases.saldo(usuario);
+        if(saldo&gt;=importe){
+            return this.transaccionRepository.transaccion(usuario,conserje,concepto,importe);
+        }else<span class="missing-if-branch" title="else path not taken" >E</span>{
+<span class="cstat-no" title="statement not covered" >            throw new Error("No hay saldo suficiente");</span>
+        }
 &nbsp;
-export { collections };</pre></td></tr></table></pre>
+        
+    }
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
@@ -159,14 +162,14 @@ export { collections };</pre></td></tr></table></pre>
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2025-02-27T12:40:48.703Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     
