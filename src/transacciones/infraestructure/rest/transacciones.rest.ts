@@ -27,8 +27,8 @@ router.get("/",isAuth, async (req: Request, res: Response) => {
     
             const transacciones = await transacionesUsecases.getTransacionesUsuario(correo);
      
-            res.status(200).json({transacciones})
-        
+            res.status(200).json(transacciones)
+            
         } catch (error) {
             res.status(500).json({ mensaje: error.message });
     }
@@ -75,8 +75,8 @@ router.post("/recargar",isConserje, async (req: Request, res: Response) => {
     const importe: number  = req.body.importe
 
     try {
-        const transacciones = await transacionesUsecases.recargar(usuario,conserje,importe);
-        res.status(200).json({transacciones})
+        const transaccion = await transacionesUsecases.recargar(usuario,conserje,importe);
+        res.status(200).json(transaccion)
 
     } catch (error) {
         res.status(500).json({ mensaje: error.message });
@@ -94,9 +94,9 @@ router.post("/transaccion",isConserje, async (req: Request, res: Response) => {
     const importe: number = req.body.importe
 
     try {
-        const transacciones = await transacionesUsecases.transaccion(usuario,conserje,concepto,importe);
+        const transaccion = await transacionesUsecases.transaccion(usuario,conserje,concepto,importe);
 
-        res.status(200).json({transacciones})
+        res.status(200).json(transaccion)
 
     } catch (error) {
         res.status(500).json({ mensaje: error.message });
